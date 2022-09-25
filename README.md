@@ -1,3 +1,10 @@
+https://github.com/motoko-bootcamp/bootcamp のフォークです。  
+現状、下記のみを DeepL で日本語へ翻訳しただけのものです。ところどころ、変な訳になっているかもしれません。翻訳作業を継続中。
+- daily_challenges/day_1/GUIDE.MD
+- daily_challenges/day_1/CHALLENGE.MD
+- daily_challenges/day_2/GUIDE.MD
+- daily_challenges/day_2/CHALLENGE.MD
+
 # Welcome to the first Motoko-bootcamp! 👻
 
 Hello and welcome to all motivated learners. 🧑‍🎓

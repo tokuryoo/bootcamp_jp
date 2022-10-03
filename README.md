@@ -8,6 +8,10 @@ https://github.com/motoko-bootcamp/bootcamp のフォークです。
 - daily_challenges/day_3/CHALLENGE.MD
 - daily_challenges/day_4/GUIDE.MD
 - daily_challenges/day_4/CHALLENGE.MD
+- daily_challenges/day_5/GUIDE.MD
+- daily_challenges/day_5/CHALLENGE.MD
+- daily_challenges/day_6/GUIDE.MD
+- daily_challenges/day_6/CHALLENGE.MD
 
 # Welcome to the first Motoko-bootcamp! 👻
 

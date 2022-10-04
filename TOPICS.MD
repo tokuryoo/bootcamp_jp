@@ -1,6 +1,7 @@
-# Motoko bootcamp : topics for daily guide and challenges. 📚
+# Motoko bootcamp : topics for daily guide and challenges. デイリーガイドと課題の題目 📚
 
 - Day 1 : Introduction to Motoko : variables, types, function, modules, loops & iterators.
+- Day 1 : Motokoの紹介：変数、型、関数、モジュール、ループとイテレータ。
 
 - Day 2 : String : Binary / Bytes / ASCII / Unicode / Char & Text modules.
 

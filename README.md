@@ -1,8 +1,8 @@
-訳注
-https://github.com/motoko-bootcamp/bootcamp のフォークです。
+# 訳注
 
-Motoko Bootcamp は既に終了したイベントです。しかし、このイベントの教材は Motoko を学び始める上で有用です。
-基本的に、DeepL で日本語へ翻訳しただけのものです。ところどころ、変な訳になっているかもしれません。気が向いたら、翻訳の質をあげます。
+https://github.com/motoko-bootcamp/bootcamp をフォークして日本語へ翻訳したものです。基本的に、DeepL で日本語へ翻訳しただけのものです。ところどころ、変な訳になっているかもしれません。気が向いたら、翻訳の質を上げるかもしれません。
+
+Motoko Bootcamp は既に終了したイベントです。しかし、このイベントの当資料は Motoko を学び始める上で有用でしょう。
 
 # Welcome to the first Motoko-bootcamp! 👻
 

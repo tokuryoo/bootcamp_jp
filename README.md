@@ -1,22 +1,8 @@
 訳注
+https://github.com/motoko-bootcamp/bootcamp のフォークです。
 
-Motoko Bootcamp は既に終了したイベントです。しかし、Motoko を学び始める上で有用な資料です。
-
-https://github.com/motoko-bootcamp/bootcamp のフォークです。  
-現状、下記のみを DeepL で日本語へ翻訳しただけのものです。ところどころ、変な訳になっているかもしれません。翻訳作業を継続中。
-- README.md
-- daily_challenges/day_1/GUIDE.MD
-- daily_challenges/day_1/CHALLENGE.MD
-- daily_challenges/day_2/GUIDE.MD
-- daily_challenges/day_2/CHALLENGE.MD
-- daily_challenges/day_3/GUIDE.MD
-- daily_challenges/day_3/CHALLENGE.MD
-- daily_challenges/day_4/GUIDE.MD
-- daily_challenges/day_4/CHALLENGE.MD
-- daily_challenges/day_5/GUIDE.MD
-- daily_challenges/day_5/CHALLENGE.MD
-- daily_challenges/day_6/GUIDE.MD
-- daily_challenges/day_6/CHALLENGE.MD
+Motoko Bootcamp は既に終了したイベントです。しかし、このイベントの教材は Motoko を学び始める上で有用です。
+基本的に、DeepL で日本語へ翻訳しただけのものです。ところどころ、変な訳になっているかもしれません。気が向いたら、翻訳の質をあげます。
 
 # Welcome to the first Motoko-bootcamp! 👻
 

@@ -8,7 +8,7 @@
 ## Things we'll cover 取材内容
 
 - `let` vs `var`
-- let` と `var` の比較
+- `let` と `var` の比較
 - immutable vs mutable arrays
 - immutable 配列 vs mutable配列
 - `Array` module from the base library - https://smartcontracts.org/docs/base-libraries/Array.html

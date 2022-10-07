@@ -36,16 +36,35 @@ Motokoは、**Dfinity**財団がインターネット・コンピュータのた
 
 motokoファイルは、末尾に.moの表示があるファイルです。
 
-dfxで新しいプロジェクトを.moコマンドで作ってみましょう。
-
+以下のコマンドを使って dfx で新しいプロジェクトを作成しましょう。
 
 ```
 dfx create hello
 ```
 
+訳注：下記のようにあらかじめ、dfx.json を編集しておく必要がある。
+```
+  "canisters": {
+    "hello": {
+      "main": "src/main.mo",
+      "type": "motoko"
+    },
+```
+
+訳注：上記コマンドは誤り。下記が正しい。
+```
+dfx canister create hello
+```
+
+訳注：もしくは、dfx.json を編集せずに、下記コマンドでも良い。
+```
+dfx canister create day_1_backend
+```
+
 You can open the new project with your IDE (Visual Studio Code or other) and you will notice inside src/hello a file called main.mo : this is a motoko file.
 
-IDE (Visual Studio Code など) で新しいプロジェクトを開くと、src/hello の中に main.mo というファイルがあることに気づくでしょう。
+IDE (Visual Studio Code など) で新しいプロジェクトを開くと、src/hello の中に main.mo というファイルがあることに気づくでしょう。<br/>
+訳注：実際には、src/main.mo というファイルは作られない。エディタ等で新規作成すると良いだろう。もしくは、dfx new day_1 を実行した際に自動生成された src/day_1_backend/main.mo を利用しても良い。
 
 <p align="center"> <img src="img/file.png" width="300"/> </p>
 
@@ -106,7 +125,7 @@ The next thing you should notice is the **argument** of the function greet : the
 
 The return value of this function is of type **async Text**. <br/> This means that the person or canister calling will have to **await** to get the result. ⏱
 
-この関数の戻り値は、**async Text** 型です。<br/> これは、呼び出した人またはキャニスターが結果を取得するために **待機** する必要があることを意味します。⏱
+この関数の戻り値は、**async Text** 型です。<br/> これは、呼び出した人またはキャニスターが結果を取得するには **await** する必要があることを意味します。⏱
 
 To understand this concept you need to imagine what it means to be a canister on the Internet Computer : at any moment an user or an other canister can call you through any of your **public** function.
 
@@ -114,7 +133,7 @@ To understand this concept you need to imagine what it means to be a canister on
 
 What if you were already answering a previous request ? You are a simple program you can only do one thing at a time : you need to finish what you are currently doing and **then** you will be able to process the incoming request. ⚡️
 
-もし、あなたがすでに前のリクエストに答えていたとしたらどうでしょう？あなたは一度に一つのことしかできない単純なプログラムです。現在行っていることを終えて、**それから**、入ってきた要求を処理することができます。⚡️
+もし、あなたがすでに前のリクエストに答えていたとしたらどうでしょう？あなたは一度に一つのことしかできない単純なプログラムです。現在行っていることを終えて、**その後**、入ってきた要求を処理することができます。⚡️
 
 
 By specifying that the return value is of type **async Text** you indicate to anyone that if they call your **greet** function they will get back a **Text** value but they will have to wait a bit. 🏎
@@ -137,6 +156,8 @@ We can call the greet function using <a href="https://smartcontracts.org/docs/de
 dfx deploy day_1
 ```
 
+訳注："dfx deploy day_1_backend" または "dfx deploy hello" が正しい。
+
 Once the canister has been deployed.
 
 キャニスターがデプロイされたら
@@ -144,6 +165,13 @@ Once the canister has been deployed.
 ```
 dfx canister call day_1 greet '("world")'
 ("Hello, world!")
+```
+
+訳注：下記が正しい。
+```
+dfx canister call day_1_backend greet '("world")'
+または
+dfx canister call hello greet '("world")'
 ```
 
 **day_1** is the name of the canister.
@@ -154,7 +182,6 @@ dfx canister call day_1 greet '("world")'
 
 **greet** は、今回呼び出す関数です。
 
-<br/>
 **"world"** is the argument we are sending.
 Note : when using dfx you should put your argument(s) into **'( )'**.
 
@@ -206,7 +233,7 @@ var b = a + 3; // 8
 
 You can reassign a new value inside **mutable** variable with the reassignement operator : **:=**.
 
-mutable** 変数の内部に新しい値を代入するには、再代入演算子 :  **:=**
+**mutable** 変数の内部に新しい値を代入するには、再代入演算子 :  **:=**
 
 
 ```
@@ -273,7 +300,7 @@ Motoko 型に厳しいので、この一週間は **型エラー**が 多発し�
 
 One example of such an error would be to try to add two variables of different types. Let's try to add a **Text** with a **Nat**.
 
-このようなエラーの一例として、異なる型の2つの変数を追加しようとする場合があります。例えば、**Text**と**Nat**を追加しようとします。
+このようなエラーの一例として、異なる型の2つの変数を追加しようとする場合があります。例えば、**Text** に **Nat** を加算してみましょう。
 
 
 ```
@@ -351,7 +378,7 @@ let a : Nat = 10 - 5;
 
 ☢️ Be careful when using substraction operator with the type Nat. ☢️ <br/> <br/> The type **Nat** is composed of positive numbers only. <br/> If the result of the substraction is below 0, your value won't be of type Nat anymore and if your program if expecting a value of type **Nat** it might **trap**.
 
-☢️ Nat型にサブトラクション演算子を使用する場合は注意が必要です。☢️ <br/> <br/> Nat** 型は正の数のみから構成されます。もし、減算の結果が0以下であれば、その値はもうNat型ではなく、もしプログラムが**Nat**型の値を期待しているならば、**trap**するかもしれません。
+☢️ Nat型に減算演算子を使用する場合は注意が必要です。☢️ <br/> <br/> **Nat** 型は正の数のみから構成されます。もし、減算の結果が0以下であれば、その値はもうNat型ではなく、もしプログラムが**Nat**型の値を期待しているならば、**trap**するかもしれません。
 
 
 ```
@@ -382,9 +409,9 @@ You can divide two numbers using the **division** operator : **/** .
 <br>
 You can get the remainder of a divided by b using the **modulo** operator : **%** .
 
-2 つの数値を割り算するには、**division** 演算子を使用します。**/** .
+2 つの数値を割り算するには、**division** （除算）演算子を使用します。**/** .
 <br>
-a を b で割った余りは、**modulo** 演算子を用いて求めることができます。**%** .
+a を b で割った余りは、**modulo** （剰余）演算子を用いて求めることができます。**%** .
 
 ```
 let a : Nat = 10 / 2;
@@ -406,7 +433,7 @@ Let's move on to a new type called **Bool**. <br/>
 This type is relatively special because it his composed of only two values : **true** and **false**.
 
 次に、**Bool**という新しい型に移りましょう。<br/>
-この型は比較的特殊で、2つの値のみから構成される。**true**とfalse**の2つの値で構成される。
+この型は比較的特殊で、2つの値のみから構成される。**true** と **false** の2つの値で構成される。
 
 This type is often used with **if condition** to add conditions to your function.
 
@@ -424,7 +451,7 @@ if(true) {
 Now let me introduce the **equality** operator **==**. <br/>This operator is used to test if two values are equals. It returns a boolean indicating **true** or **false**.
 We can actually combine the **==** operator with the **if condition**.
 
-ここで、**均等**演算子*==*を紹介します。<br/>この演算子は、2つの値が等しいかどうかをテストするために使用されます。これは、**true** または **false** を示すブーリアン値を返します。
+ここで、**等価**演算子 *==*を紹介します。<br/>この演算子は、2つの値が等しいかどうかをテストするために使用されます。これは、**true** または **false** を示すブーリアン値を返します。
 実際には、**==**演算子と**if条件**を組み合わせることができます。
 
 ```
@@ -504,7 +531,7 @@ Let me introduce other **relational operators** :
   1 >= 1    //true
   ```
 - The **!=** (not equal) operator.
-- **!=** (not equal) 演算子.
+- **!=** (非等価) 演算子.
   ```
   1 != 1    //false
   1 != 0    //true
@@ -532,7 +559,7 @@ actor {
 
 You now have the mission to deploy this actor and test this function for different values. 😉
 
-このアクターを配備し、異なる値でこの機能をテストする使命があります。
+このアクターを配備し、異なる値でこの機能をテストするミッションがあります。
 
 # Challenge 🎮
 
@@ -566,7 +593,7 @@ Text 型の値と Nat 型の値を混在させようとしているのです。<
 
 Let's rewrite our actor and play with what we've learned.
 
-学んだことを活かして、役者を書き換えて遊ぼう。
+学んだことを活かして、アクターを書き換えて遊ぼう。
 
 
 ```
@@ -585,6 +612,7 @@ actor {
 ```
 
 💡 Note that the function check_size has no argument.
+
 💡 関数 check_size には引数がないことに注意してください。
 
 <br/>
@@ -609,14 +637,13 @@ dfx canister call hello check_index '(6)'
 ✅ The first command will return **6** the second one should report a **trap** error indicating than the index is out of the bounds of the Array.
 
 ✅ 最初のコマンドは **6** を返し、2番目のコマンドはインデックスが配列の範囲外であることを示す **trap** エラーを報告するはずです。
-を報告する。
 
 # Loop ループ ⏭
 
 We can loop over an array using a **for** loop and the following syntax.
 Copy and paste the following code and deploy the actor.
 
-for**ループと次の構文を使って、配列の上をループすることができます。
+**for** ループと次の構文を使って、配列の上をループすることができます。
 以下のコードをコピー＆ペーストして、アクターをデプロイしてください。
 
 ```
@@ -660,7 +687,7 @@ Take a break and try completing challenge 7 and 8.
 
 As you've probably noticed in the previous actor declaration, we have imported a **module** (called **Debug**). <br/>
 
-先ほどのアクター宣言でお気づきかと思いますが、**モジュール**（*Debug**という名前）をインポートしています。
+先ほどのアクター宣言でお気づきかと思いますが、**モジュール**（**Debug**という名前）をインポートしています。
 
 A module is composed of code written by someone else that you can use in your own program. <br/>
 We will see different ways to import modules and even how to create your own modules.
@@ -672,7 +699,7 @@ However, for today we only need to know how to import modules from the **base li
 
 💡 The **base library** is a set of modules to handle common operations on the most used types (Array, Bool, Nat, Int, Text...).
 
-💡 **基本ライブラリ**は、最もよく使われる型（Array, Bool, Nat, Int, Text...）に対する共通の操作を扱うためのモジュール群です。
+💡 **ベースライブラリ**は、最もよく使われる型（Array, Bool, Nat, Int, Text...）に対する共通の操作を扱うためのモジュール群です。
 
 
 - The **source code** for this library is accessible <a href="https://github.com/dfinity/motoko-base" target="_blank"> here </a> and is maintained by engineers from the Dfinity foundation and community members.
@@ -685,11 +712,11 @@ However, for today we only need to know how to import modules from the **base li
 
 The **source code** is meant to understand how a specific module was written whereas the **documentation** is meant to understand how you can use a module. <br/> You need to know how to use the **documentation** but you don't need to understand how the **source code** for these modules was written (expect if you are curious 👀).
 
-**ソースコード** は特定のモジュールがどのように書かれたかを理解するためのものであり、**ドキュメンテーション** はそのモジュールをどのように使うことができるかを理解するためのものです。<br/>ドキュメント**の使い方を知る必要はありますが、これらのモジュールの**ソースコード**がどのように書かれたかを理解する必要はありません（興味がある人は別ですが👀）。
+**ソースコード** は特定のモジュールがどのように書かれたかを理解するためのものであり、**ドキュメント** はそのモジュールをどのように使うことができるかを理解するためのものです。<br/>**ドキュメント** の利用方法を知る必要はありますが、これらのモジュールの **ソースコード** がどのように書かれたかを理解する必要はありません（興味がある人は別ですが👀）。
 
 Here's an example that show how to import the <a href="https://smartcontracts.org/docs/base-libraries/Nat.html" target="_blank"> **Nat** </a> module and use the **toText** function.
 
-以下は、<a href="https://smartcontracts.org/docs/base-libraries/Nat.html" target="_blank"> **Nat** </a>> モジュールをインポートして、**toText**関数を使用する例です。
+以下は、<a href="https://smartcontracts.org/docs/base-libraries/Nat.html" target="_blank"> **Nat** </a> モジュールをインポートして、**toText**関数を使用する例です。
 
 
 ```

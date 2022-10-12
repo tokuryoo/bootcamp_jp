@@ -33,7 +33,7 @@ TODO
 
 
 - Challenge 5 : Write a function <strong><i>divide</i></strong> that takes two natural numbers <strong> n </strong> and <strong> m </strong> and returns a boolean indicating if n divides m.
-- 課題5：2つの自然数 <strong>n</strong> と <strong>m</strong> を受け取り、<strong>n</strong> が <strong>m</strong> を割っているかどうかを示すブール値を返す関数 <strong><i>divide</i></strong> を作成せよ。
+- 課題5：2つの自然数 <strong>n</strong> と <strong>m</strong> を受け取り、<strong>n</strong> が <strong>m</strong> を割り切れるかどうかを示すブール値を返す関数 <strong><i>divide</i></strong> を作成せよ。
 
 - Challenge 6 : Write a function <strong><i> is_even </i> </strong> that takes a natural number <strong> n </strong> and returns a boolean indicating if <strong> n </strong> is even.
 - 課題6：自然数 <strong>n</strong> を受け取り、<strong>n</strong> が偶数かどうかを示すブール値を返す関数 <strong><i>is_even</i></strong> を作成しなさい。

@@ -29,7 +29,7 @@ Motoko Bootcamp の **day 2** へようこそ! <br/>
   dfx start
   ```
 
-# Decimal 🔢
+# Decimal 10進法 🔢
 
 Decimal is a base-10 **number system**, which uses ten digits (0 to 9), this is the primarly systems used by humans (probably because we have 10 fingers to count).
 
@@ -43,9 +43,9 @@ In the decimal system, once you've reached the last digit (which is 9), you add 
 
     0 1 2 3 4 5 6 7 8 9 ... wait I don't have any digits anymore ? 😧
 
-    10 11 12 .... 99 wait I don't have any digits anymore ?  😧
-
     0 1 2 3 4 5 6 7 8 9 ...待てよ、もう桁がないんだけど？😧
+
+    10 11 12 .... 99 wait I don't have any digits anymore ?  😧
 
     10 11 12 .... 99 待って......もう1桁もないんだけど？ 😧
 
@@ -54,7 +54,7 @@ Each digit represents a **power** of 10.
 
 1234 = 1 x 1000 + 2 x 100 + 3 x 10 + 4 x 1 = 1 x 10 <sup>3</sup> + 2 x 10 <sup>2</sup> + 3 x 10 <sup>1</sup>+ 4 x 10 <sup>0</sup>.
 
-# Binary 🟢 🔴
+# Binary 2進法 🟢 🔴
 
 Binary is a base-2 **number system**, it only uses two digits (0 and 1). <br/> This is the system used at the heart of all computers : every number, every character, every image, every video is encoded as binary for a computer.
 
@@ -74,12 +74,12 @@ This is how you **count** in binary.<br/> Notice that everytime you run of digit
 これが2進法での **数え方** です。<br/>桁が足りなくなるたびに（実際には1になるときに）、左から1ずつ増えていき、一番右の桁で0から数え始めることに注意してください。
 
 💡 The method to count is the same as in the decimal system it's just that instead of havings 10 digits we only use 2 digits <br/>
-💡数え方は10進法と同じで、10桁の代わりに2桁を使うだけです。<br/>
+💡数え方は10進法と同じで、10 の桁の代わりに2 の桁を使うだけです。<br/>
 
 <table style="min-width:500px;font-size:1em">
 			<tbody><tr>
-				<td>Decimal</td>
-				<td>Binary</td>
+				<td>Decimal 10進法</td>
+				<td>Binary 2進法</td>
 			</tr>
 			<tr>
 				<td>0</td>
@@ -176,7 +176,7 @@ Motokoには、<a href="https://smartcontracts.org/docs/base-libraries/Nat8.html
          11111111 = 1 x 2 <sup>7</sup>  + 1 x 2 <sup>6</sup> + 1 x 2 <sup>5</sup> + 1 x 2 <sup>4</sup> + 1 x 2 <sup>3</sup> + 1 x 2 <sup>2</sup> + 1 x 2 <sup>1</sup> +  + 1 x 2 <sup>0</sup> = 1 x 128 + 1 x 64 + 1 x 32 + 1 x 16 + 1 x 8 + 1 x 4 + 1 x 2 + 1 x 1 = <strong> 255 </strong>.
 		 <br/> <br/>
 		 <p> The maximum number we can represent with the type Nat8 is 255. </p>
-                 <p> Nat8型で表現できる最大の数値は255です。</p>
+                 <p> Nat8 型で表現できる最大の数値は255です。</p>
     </details>
 	<br/>
 
@@ -225,20 +225,23 @@ Motoko には、以下の型もあります : **Nat 16**, **Nat 32** and **Nat 6
  <details>
         <summary style="color:green"> 🤔 What is the maximum number represented by Nat32 ? 🤔 Nat32で表される最大の数は何でしょうか？</summary>
 		<br/>
-		 <p> The maximum number we can represent with the type Nat32 is 4,294,967,295. Nat32型で表現できる最大数は4,294,967,295である。</p>
+		 <p> The maximum number we can represent with the type Nat32 is 4,294,967,295.</p>
+		 <p> Nat32型で表現できる最大数は4,294,967,295である。</p>
     </details>
 <br/>
 
 The **Nat** type is unbounded, there is no upper limit to the maximum value it can represents. <br/>
-Nat** 型は unbounded であり、表現できる最大値に上限はない。<br/>
+**Nat** 型は制限はなく、表現できる最大値に上限はありません。<br/>
 You might be wondering why do we use **Nat 8/16/32/64** if we can always use **Nat** instead ? <br/>
 なぜ、**Nat 8/16/32/64**を使うのだろうかと疑問に思うかもしれません。<br/>
 
-This is for memory and efficiency reasons, the less bits we take to represent a number the more memory we save, and memory is expensive ! <br/> <br/>
+This is for memory and efficiency reasons, the less bits we take to represent a number the more memory we save, and memory is expensive !
+
+これはメモリと効率のためで、数値を表現するビットが少ないほどメモリを節約できますし、メモリは高価です。
+
 If you know with assurance that your number will stay in a certain range (maybe because it's a constant) you can use the corresponding type to save memory. However if you have any doubt (because the value might change during your program execution) use a **Nat** and you will be safe.
 
-これはメモリと効率のためで、数値を表現するビットが少ないほどメモリを節約できますし、メモリは高価です <br/> <br/>
-もし、数値がある範囲に収まることが確実に分かっている場合（定数だからかもしれません）、メモリを節約するために対応する型を使用することができます。しかし、（プログラムの実行中に値が変わるかもしれないので）少しでも疑問がある場合は、**Nat**を使えば安全です。
+もし、数値がある範囲に収まることが確実に分かっている場合（定数だからかもしれません）、メモリを節約するために対応する型を使用できます。しかし、（プログラムの実行中に値が変わるかもしれないので）少しでも疑問がある場合は、**Nat**を使えば安全です。
 
 
 # Challenge 課題🎮
@@ -275,25 +278,25 @@ Luckily we don't need to create our standard because we already have something c
 <p align="center"> <img src="img/ascii.png" width="600"/> </p>
 
 **Capital letters** (A,B,C ... Z) are represented by decimals numbers starting from 65 to 90. <br/>
-****大文字**（A,B,C ... Z）は、65から90までの10進数で表します。
+**大文字**（A,B,C ... Z）は、65から90までの10進数で表します。<br/>
 **Small letters** (a,b,c ... z) are represented by decimals from 97 to 122. <br/>
-**小さな文字**（a,b,c ... z）は、97から122までの小数で表します。<br/>
+**小さな文字**（a,b,c ... z）は、97から122までの10進数で表します。<br/>
 
 💡 Notice that **numbers** from 0 to 9 are also represented from 48 to 59. This simply means the textual version of those numbers are represented using another number.
 
-💡 0から9までの数字**は、48から59までの数字でも表現されることに注意してください。これは単に、それらの数字のテキスト版が、別の数字を使って表現されていることを意味します。
+💡 0から9までの **数字** は、48から59までの数字でも表現されることに注意してください。これは単に、それらの数字のテキスト版が、別の数字を使って表現されていることを意味します。
 
 ASCII is an american standard that uses only 7-bits : it can encode only 128 characters. <br/> This is fine for most English character, numbers and punctuations but this is pretty limited. <br/> <br/>
+ASCIIはアメリカの標準規格で、7ビットしか使わないので、128文字しかエンコードできません。<br/>これは、ほとんどの英字、数字、句読点には適していますが、かなり限定的です。<br/><br/>
 We have since moved to **Unicode** which is, to put it short, an improved version of ASCII, that also takes into account characters from other languages, emojis... but even using Unicode (which is what is used in Motoko), ASCII table are still valid (this is because Unicode is compatible with ASCII).
 
-ASCIIはアメリカの標準規格で、7ビットしか使わないので、128文字しかエンコードできません。<br/>これは、ほとんどの英字、数字、句読点には適していますが、かなり限定的です。<br/><br/>
 その後、**Unicode**に移行しましたが、これは簡単に言うと、ASCIIの改良版で、他の言語の文字や絵文字も考慮されています...が、Unicodeを使用しても（Motokoではこれを使用）、ASCIIテーブルは有効です（これはUnicodeがASCIIと互換性があるからです）。
 
 # Char & Text 💬
 
 A value of type **Text** is composed of multiples **Char**.
 
-Text** 型の値は、複数の **Char** で構成されます。
+**Text** 型の値は、複数の **Char** で構成されます。
 
 ```
 let a : Text = "Hello";
@@ -303,7 +306,7 @@ let b : Char = 'c';
 Char values are delimited using **' '** whereas we use **" "** for Text.
 You can loop through all characters of a Text value using **.chars()** as in the following expression :
 
-文字列は **' '** で区切られますが、文字列には **" "** を使用します。
+Char は **' '** で区切られますが、Text には **" "** を使用します。
 以下の式のように、**.chars()** を使用すると、Text値のすべての文字をループすることができます。
 
 ```
@@ -315,7 +318,7 @@ for(char in a.chars()){
 
 You can also access the size (number of characters) of a Text value using **.size()** <br/>
 
-また、Text値のサイズ（文字数）は、**.size()** を使ってアクセスすることができます。 <br/>
+また、Text 値のサイズ（文字数）は **.size()** を使ってアクセスできます。 <br/>
 
 ```
 actor {
@@ -409,7 +412,7 @@ To answer this question : we need to take a step back and explain severals thing
 この問いに答えるには、一歩下がって、いくつかの事柄を説明する必要があります。
 
 - Contrary to what you might believe : the language that is powering canisters on the Internet Computer is **not** Motoko. You've been lied to. <br/> Motoko is used to compile (translate) your code into another language called **Web Assembly** (WASM) which is what is ultimately deployed on the IC. <br/> <br/>
-- インターネットコンピュータのキャニスターを動かしている言語は、Motoko ではありません。あなたは騙されているのです。Motokoは、あなたのコードを**Web Assembly** (WASM)と呼ばれる別の言語にコンパイル（翻訳）するために使われ、最終的にIC上に配置されるものです。
+- Internet Computer のキャニスターを動かしている言語は、Motoko ではありません。あなたは騙されているのです。Motokoは、あなたのコードを**Web Assembly** (WASM)と呼ばれる別の言語にコンパイル（翻訳）するために使われ、最終的にIC上に配置されるものです。
 - Web Assembly is a **low level** language. We have said earlier that the machine only understand binary but we do not write code in binary, we use different languages of programmation (Motoko, Rust, Javascript, C, Java ...) those languages are **high level**, this means their are closer to a human language than machine instructions.
 - Webアセンブリは **低レベル** の言語です。機械はバイナリしか理解できないと言いましたが、私たちはバイナリでコードを書きません。私たちはさまざまなプログラミング言語（Motoko、Rust、Javascript、C、Javaなど）を使っていますが、これらの言語は**高レベル**で、機械語よりも人間の言語に近いということです。
 
@@ -424,7 +427,7 @@ To answer this question : we need to take a step back and explain severals thing
 - キャニスターと異なる言語で書かれたアプリケーションの間で通信できる方法が必要です。例えば、あなたがMotokoでコードを書いていて、Rustで書かれたcanisterにメッセージを送れるようにしたいとしましょう。<br/>これはまさに、中国語 を期待している人にスペイン語を話そうとするようなものです 🇪🇸 🇨🇳 。<br/>
 
 - On the Internet Computer we have a **common** language 🌍 : it's called **Candid**. This is an **interface description language (IDL)** : it's primary purpose is to describe the interface of a canister so everyone knows what to expect from this canister. Here's what it looks like for a simple **counter**.
-- インターネット・コンピュータには、**共通**言語🌍があります：それは**Candid**と呼ばれています。これは **インターフェース記述言語(IDL)** で、その主な目的はキャニスターのインターフェースを記述することで、誰もがこのキャニスターから何を期待すればよいかを知ることができます。以下は、単純な**カウンタ**のためのものです。
+- Internet Computer には、**共通**言語🌍があります：それは **Candid** と呼ばれています。これは **インターフェース記述言語(IDL)** で、その主な目的はキャニスターのインターフェースを記述することで、誰もがこのキャニスターから何を期待すればよいかを知ることができます。以下は、単純な**カウンタ**のためのものです。
 
 <p align="center"> <img src="img/candid.png" width="600"/> </p>
 
@@ -443,8 +446,8 @@ dfx canister call day_2 unicode_to_character '(63)' <- Candid
 Although Candid types and Motoko types are quite close, they are not the same. <br/>
 In Candid there is no **Char** type, this type only exists within the Motoko code. For Candid a **Char** is abstracted as a **nat32**.
 
-Candid 型とモトコー型はかなり近いのですが、同じではありません。<br/>
-Candid には **Char** という型はなく、この型はMotokoのコード内にのみ存在します。キャンディッドでは **Char** は **nat32** として抽象化されています。
+Candid 型と Motoko 型はかなり近いのですが、同じではありません。<br/>
+Candid には **Char** 型はなく、この型は Motoko のコード内にのみ存在します。Candid では **Char** は **nat32** として抽象化されています。
 
 ```
 actor {
@@ -456,7 +459,7 @@ actor {
 
 This is why the previous actor declaration, once deployed will return the following.
 
-このため、先ほどのアクター宣言は、デプロイすると次のように返されます。
+このため、先ほどの actor の宣言は、デプロイすると下記を返します。
 
 ```
 dfx canister call day_2 test '()'
@@ -465,7 +468,7 @@ dfx canister call day_2 test '()'
 
 The '1' **Char** in Motoko is equivalent to the 49 **nat 32** of Candid (due to the Unicode representation of 1).
 
-Motoko の '1' **Char** は Candid の 49 **nat 32** に相当します (1 の Unicode 表現による)。
+Motoko の **Char** の '1'  は Candid の **nat 32** の 49  に相当します (1 の Unicode 表現によるもの)。
 
 # Challenge 🎮
 

@@ -106,7 +106,8 @@ Motokoでは、**_null_** という特殊な値があります。<br/>
 **_null_** の型は **Null** である（この型は1つの値のみを含む）。
 
 Let's say you want to create a function named **_index_of_one_** that takes an array of type **[Nat]** and returns the first index such that the value at that index is equal to 1. <br/> You also want this function to return **_null_** if no matching index was found.
-例えば、 **[Nat]** 型の配列を受け取り、そのインデックスにある値が1に等しい最初のインデックスを返す **_index_of_one_** という名前の関数を作りたいとします。<br/>また、この関数は、一致するインデックスが見つからなかった場合、**_null_** を返すようにしたい。
+
+例えば、 **[Nat]** 型の配列を受け取り、値が 1 と等しい最初のインデックスを返す **_index_of_one_** という名前の関数を作りたいとします。<br/>また、この関数は、一致するインデックスが見つからなかった場合、**_null_** を返すようにしたい。
 
 
 ```
@@ -163,7 +164,7 @@ actor {
 
 Sometimes in your code you will need to handle those optional values, you can do so with a **switch** expression.
 
-コード内でこれらのオプション値を処理する必要がある場合、**switch** 式を使用して処理することができます。
+コード内でこれらのオプション値を処理する必要がある場合、**switch** 式を使用して処理できます。
 
 ```
 import Nat "mo:base/Nat";
@@ -196,7 +197,7 @@ dfx canister call day_3 null_or_nat '(opt 4)'
 Here we have to use the Candid syntax **opt 4** whereas in Motoko we could just write **?4**.
 
 🕵️ Candid と Motoko の違いにもう一度注目してください。<br/>
-ここでは、Motokoでは単に**?4**と書くことができるのに対し、Candidでは**opt 4**という構文を使わなくてはなりません。
+ここでは、Motokoでは単に **?4** と書くことができるのに対し、Candidでは **opt 4** という構文を使わなくてはなりません。
 
 ```
 dfx canister call day_3 null_or_nat '(null)'
@@ -230,18 +231,18 @@ This code will not compile because the function toText is expecting a parameter 
 Some functions accept optional types, but not this one. <br/>
 I hope you now appreciate the importance of **switch** / **case**.
 
-関数によっては、オプションの型を受け付けるものもありますが、この関数ではありません。<br/>
-これで**switch** / **case**の重要性を理解していただけたと思います。
+関数によっては、オプションの型を受け付けるものもありますが、この関数では受け付けていません。<br/>
+これで **switch** / **case** の重要性を理解していただけたと思います。
 
-# Generic type // Generic 型 👤
+# Generic type // 総称（Generic） 型 👤
 
 I have briefly introduced the concept of generic type when we introduced the optional type with the notation **?T**. Let's dive into it.
 
-オプショナル型を**?T**という表記で紹介したときに、ジェネリック型の概念について簡単に紹介しました。その中に飛び込んでみましょう。
+オプショナル型を **?T** という表記で紹介したときに、総称型（Generic 型）の概念について簡単に紹介しました。その中に飛び込んでみましょう。
 
 The generic type **T** allow us to write more general code, that can work with different types and be reused.
 
-汎用型 **T** は、より一般的なコードを書くことを可能にし、異なる型を扱うことができ、再利用することができます。
+総称型 **T** は、より一般的なコードを書くことを可能にし、異なる型を扱うことができ、再利用することができます。
 
 Let's say we want to write a function called **_is_array_size_even_** that returns a **Bool** indicating if the size of the array is even or not.</br>
 We could write something like this
@@ -270,7 +271,7 @@ This function is valid, but it only works if our array is filled with **Nat**. W
   このソリューションが最悪であることに同意していただけると幸いです。
 
 - A better solution is to use the generic notation : **T**. This basically allow us to create **one** generic function that we can reuse for all the types available in Motoko.
-- より良い解決策は，一般的な表記法を用いることである．**T**. これにより、Motokoで利用可能なすべての型に対して再利用可能な**1つの**汎用関数を作成することが基本的に可能になります。
+- より良い解決策は，総称的(generic)な表記法を用いることである．**T**. これにより、Motokoで利用可能なすべての型に対して再利用可能な **1つの** 総称（generic）関数を作成することが基本的に可能になります。
 
 ```
 public func is_array_size_even<T>(array : [T]) : async Bool {
@@ -286,10 +287,11 @@ public func is_array_size_even<T>(array : [T]) : async Bool {
 T means "whatever type you want" and [T] means "whatever type you want as long as it's an array".
 Tは「好きな型」、[T]は「配列である限り好きな型」を意味します。
 
-🕵️ Notice the <T> following the name of the function. It means that this function now depends on the type of T. <br/> If you want to use the array_size function you'll need to specify for which type you are going to use it !
+🕵️ Notice the &lt;T&gt; following the name of the function. It means that this function now depends on the type of T. <br/> If you want to use the array_size function you'll need to specify for which type you are going to use it !
 
-🕵️ 関数の名前の後にある<T>に注目してください。これは、この関数がTの型に依存することを意味しています。<br/>
-もしarray_size関数を使いたいなら、どの型に対して使うかを指定する必要があります !
+🕵️ 関数の名前の後にある &lt;T&gt; に注目してください。これは、この関数がTの型に依存することを意味しています。<br/>
+もし array_size 関数を使いたいならば、どの型に対して使うかを指定する必要があります !<br/>
+訳注 原文が誤っている様子。「もし is_array_size_even 関数を使いたいならば」が正しいと思われる。
 
 
 ```
@@ -308,7 +310,7 @@ let bool : Boolean = is_array_size_even<Nat>(array); // I indicate to the compil
 
 We've used T to represent the generic type but you will also see A or B or C being used in the documentation, this doesn't change anything.
 
-ここではTを使って一般的な型を表しましたが、ドキュメントではAやB、Cも使われています。
+ここでは T を使って総称的な型を表しましたが、ドキュメントでは A または B または C も使われています。
 
 # Challenge 🎮
 
@@ -328,7 +330,7 @@ The **Array** module contains several higher order function, those are really po
 
 
 - <a href="https://smartcontracts.org/docs/base-libraries/Array.html#find" target="_blank"> **Find** </a> : This function takes two parameters [A] an array and **f** a function that takes a value of type A and returns a **Bool**. (f is called a **predicate**).<br/>This function returns the first value for which the **predicate** is **true**.
-- <a href="https://smartcontracts.org/docs/base-libraries/Array.html#find" target="_blank"> **Find** </a> : この関数は2つのパラメータ [A] 配列と **f** 型の値を受け取り **Bool** を返す関数を受け取ります。(fは**述語**と呼ばれる)。<br/>この関数は**述語**が**true**となる最初の値を返す。
+- <a href="https://smartcontracts.org/docs/base-libraries/Array.html#find" target="_blank"> **Find** </a> : この関数は2つのパラメータ、 配列[A] と、型 A の値を受け取り **Bool** を返す関数 **f** 、を受け取ります。(fは**述語**と呼ばれる)。<br/>この関数は **述語** が **true** となる最初の値を返します。
 
 ```
 import Array "mo:base/Array";
@@ -350,7 +352,7 @@ actor {
 
 🕵️ Notice this code sample makes use of the 3 concepts we've been discussing about : Optional type, Generic type and Higher-order functions. 😎
 
-🕵️ このコードサンプルでは、これまで議論してきた3つの概念を利用していることに注目してください。オプショナル型、汎用型、高階関数。😎
+🕵️ このコードサンプルでは、これまで議論してきた3つの概念を利用していることに注目してください。オプショナル型、総称型（Generic 型）、高階関数。😎
 
 <details>
         <summary style="color:green"> 🤔 What do you think <strong> mystere([1,4,5,18,0,2,3]) </strong> will return ? // <strong> mystere([1,4,5,18,0,2,3]) </strong> は何を返すと思いますか？</summary>
@@ -362,7 +364,7 @@ actor {
 	<br/>
 
 - <a href="https://smartcontracts.org/docs/base-libraries/Array.html#filter" target="_blank"> **Filter** </a> : This function also takes an array [A] and a **predicate** f and returns a new array [A] where only values that validate the predicate are kept.
-- <a href="https://smartcontracts.org/docs/base-libraries/Array.html#filter" target="_blank"> **Filter** </a> : この関数も配列 [A] と **述語** f を受け取り、述語を検証する値のみが保持された新しい配列 [A] を返す。
+- <a href="https://smartcontracts.org/docs/base-libraries/Array.html#filter" target="_blank"> **Filter** </a> : この関数も配列 [A] と **述語** f を受け取り、述語により検証された値のみを保持した新しい配列 [A] を返します。
 
 We can even reuse the same predicate as in the previous example. ♻️
 

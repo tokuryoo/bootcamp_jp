@@ -8,7 +8,7 @@ Motoko Bootcamp の **day 4** へようこそ !<br/>
 # Prerequisites 前提条件 ✅
 
 - Make sure you have dfx installed on your machine.
-- お使いのマシンにdfxがインストールされていることを確認してください。
+- お使いのマシンに dfx がインストールされていることを確認してください。
 
   ```
   dfx --version
@@ -29,7 +29,7 @@ During the previous days we have manipulated different types (Nat, Text, Bool, A
 Create a new file called person.mo in the day_4 folder (next to main.mo) and copy and paste the following declaration.
 
 これまでの数日間で、さまざまな型（Nat、Text、Bool、Array）を操作してきました。 今日は、自分自身の型を作成します。
-day_4フォルダ（main.moの隣）にperson.moというファイルを新規に作成し、以下の宣言をコピー＆ペーストしてください。
+day_4フォルダ（main.mo があるフォルダ）（訳注 src フォルダ直下で良い）にperson.moというファイルを新規に作成し、以下の宣言をコピー＆ペーストしてください。
 
 
 ```
@@ -41,12 +41,12 @@ module {
 This is a **module** declaration, contrary to all previous .mo files that were **actor** declarations. <br/>
 A module is (just the like the base library modules we've been using) a piece of code that we can import and reuse.
 
-これは**モジュール**宣言で、これまでの.moファイルが**アクター**宣言であったのとは対照的です。<br/>
-モジュールとは、（これまで使ってきた基本ライブラリモジュールと同じように）インポートして再利用できるコード片のことです。
+これは **モジュール** 宣言であり、これまでの .mo ファイルが **アクター** 宣言であったのとは対照的です。<br/>
+モジュールとは、（これまで使ってきた base ライブラリモジュールと同じように）インポートして再利用できるコード片のことです。
 
 This is how we can create a custom type. If you want your type to be accessible from the outside of the module you need to make it **public**.
 
-このようにして、カスタムタイプを作成することができます。もし、モジュールの外から自分のタイプにアクセスできるようにしたい場合は、それを **public** にする必要があります。
+このようにして、カスタムタイプを作成できます。もし、モジュールの外からあなたのタイプにアクセスできるようにしたい場合は、それを **public** にする必要があります。
 
 ```
 public type Person = {
@@ -57,11 +57,11 @@ public type Person = {
 
 The type Person is also called an **object** with different **fields** (name, age).
 
-Person型は、異なる**フィールド** (名前、年齢)を持つ**オブジェクト**とも呼ばれます。
+Person 型は、異なる**フィールド** (名前、年齢)を持つ**オブジェクト**とも呼ばれます。
 
 Now that we have declared our type we can create our first variable of type Person.
 
-型を宣言したので、Person型の最初の変数を作成することができます。
+型を宣言したので、Person型の最初の変数を作成できます。
 
 ```
 let tom : Person = {
@@ -72,7 +72,7 @@ let tom : Person = {
 
 You can access any **field** using the **dot** notation.
 
-**ドット** 記法を用いて、任意の **フィールド** にアクセスすることができます。
+**ドット** 記法を用いて、任意の **フィールド** にアクセスできます。
 
 ```
 let tom_name = tom.name;
@@ -81,7 +81,7 @@ let tom_age = tom.age;
 
 In your main.mo file you can **import** the type Person and use it as if it was part of Motoko native types.
 
-main.moファイルの中で、Personという型を **インポート** して、Motokoのネイティブ型の一部であるかのように使用することができます。
+main.moファイルの中で、型 Person を **import** して、Motokoのネイティブ型の一部であるかのように使用できます。
 
 
 ```
@@ -128,7 +128,7 @@ The first element of this linked list is a node where :
 この連結リストの最初の要素は、下記ノード :
 
 - Value of type **Nat** equals to 12.
-- 型名**Nat**の値は12に相当する。
+- 型 **Nat** の値は12に相当する。
 - A pointer to next node.
 - 次のノードへのポインタ。
 

@@ -25,23 +25,25 @@
 
 - 課題3：関数を2つ書け。
   - <strong><i>add_favorite_number</i></strong> は n を **Nat** 型で受け取り，この値を HashMap (キーは呼び出し元の principal) に格納する関数である．この関数には戻り値はない。
-  - <strong><i>show_favorite_number</i></strong> は引数を取らず、型 **?Nat** の n を返し、n は前の関数で定義したその人のお気に入り番号、またはその人が登録していない場合は null を返します。
+  - <strong><i>show_favorite_number</i></strong> は引数を取らず、型 **?Nat** の n を返し、n は前の関数（訳注 add_favorite_number のこと）で定義したその人(訳注 msg.caller)のお気に入り番号、またはその人が登録していない場合は null を返します。
 
 
 - Challenge 4 : Rewrite your function <strong> <i> add_favorite_number </i> </strong> so that if the caller has already registered his favorite number, the value in memory isn't modified. This function will return a text of type **Text** that indicates "You've already registered your number" in that case and "You've successfully registered your number" in the other scenario.
 
-- 課題4：関数「add_favorite_number」を、呼び出し元が既にお気に入り番号を登録していた場合、メモリ内の値が変更されないように書き直せ。この関数は、その場合は「あなたはすでに番号を登録しています」、それ以外の場合は「番号の登録に成功しました」を示す **Text** 型のテキストを返します。
+- 課題4：関数 <strong><i>add_favorite_number</i></strong> を、呼び出し元が既にお気に入り番号を登録していた場合、メモリ内の値が変更されないように書き直せ。この関数は、その場合は "You've already registered your number"、それ以外の場合は "You've successfully registered your number" を示す **Text** 型のテキストを返します。
 
 - Challenge 5 : Write two functions
   - <strong> <i> update_favorite_number </strong> </i>
   - <strong> <i> delete_favorite_number </strong> </i>
 
-- 課題5：2つの関数を書く
+- 課題5：2つの関数を書きなさい。
   - <strong> <i> update_favorite_number </strong> </i>
   - <strong> <i> delete_favorite_number </strong> </i>
 
 - Challenge 6 : Write a function <strong> <i> deposit_cycles </strong> </i> that allow anyone to deposit cycles into the canister. This function takes no parameter but returns n of type **Nat** corresponding to the amount of cycles deposited by the call.
 - 課題6：誰でもサイクルをキャニスタに預けられるようにする関数 <strong><i>deposit_cycles</i></strong> を書きなさい。この関数はパラメータを取らず、呼び出しによって預けられたサイクルの量に対応する型**Nat**の n を返す。
+  - 訳注：ヒント１。関数名は wallet_receive にすると良い。ウォレットキャニスターの 関数 wallet_send を経由して、wallet_receive を呼び出す。
+  - 訳注：ヒント２。ほぼ答え。https://github.com/dfinity/examples/tree/master/motoko/hello_cycles
 
 - Challenge 7 (hard ⚠️) : Write a function <strong> <i> withdraw_cycles </strong> </i> that takes a parameter n of type **Nat** corresponding to the number of cycles you want to withdraw from the canister and send it to caller asumming the caller has a callback called deposit_cycles()<br/>
   Note : You need two canisters. <br/>
@@ -53,11 +55,12 @@
 
 - Challenge 8 : Rewrite the counter (of day 1) but this time the counter will be kept accross ugprades. Also declare a variable of type **Nat** called versionNumber that will keep track of how many times your canister has been upgraded.
 
-- 課題8 : (1日目の)カウンターを書き直しますが、今回はアップグレードの回数を記録することにします。また、versionNumber という **Nat** 型の変数を宣言し、キャニスターが何回アップグレードされたかを記録しておく。
+- 課題8 : (1日目の)カウンターを書き直しますが、今回はアップグレードの回数を記録することにします。また、versionNumber という **Nat** 型の変数を宣言し、キャニスターが何回アップグレードされたかを記録しましょう。
+  - 訳注：１日目のカウンター。day1 の Challenge 4 のこと。
 
 - Challenge 9 : In a new file, copy and paste the functionnalities you've created in challenges 2 to 5. This time the hashmap and all records should be preserved accross upgrades.
 
-- 課題9：新しいファイルに、課題2〜5で作成した機能をコピー＆ペーストしてください。このとき、ハッシュマップとすべてのレコードは、アップグレードの間、保存される必要があります。
+- 課題9：新しいファイルに、課題2〜5で作成した機能をコピー＆ペーストしてください。このとき、ハッシュマップとすべてのレコードは、アップグレード先へ、保存する必要があります。
 
 - Challenge 10 (optional) : In autonomy, write a CRUD canister, you can add as much functionnalities as you want, a few examples :
 

@@ -5,11 +5,11 @@ Motoko Bootcamp の **day 5** へようこそ!<br/>
 
 Today we will cover the following topics : **Principal**, **Hashmap**, **Cycles** (how to deal with upgrades) & **stable variables**.
 
-本日は、以下のトピックを取り上げます。: **Principal**, **Hashmap**, **Cycles**（アップグレードの対処法）と **stable** について説明します。
+本日は、以下のトピックを取り上げます。: **Principal**, **Hashmap**, **Cycles**（アップグレードの対処法）と **stable 変数** について説明します。
 
 You can access the official documentation for each topic.
 
-各トピックの公式ドキュメントにアクセスすることができます。
+各トピックの公式ドキュメントにアクセスできます。
 
 - <a href="https://smartcontracts.org/docs/language-guide/caller-id.html" target="_blank"> Principal </a>.
 - <a href="https://smartcontracts.org/docs/base-libraries/HashMap.html" target="_blank"> Hashmap </a>.
@@ -19,7 +19,7 @@ You can access the official documentation for each topic.
 # Prerequisites 前提条件 ✅
 
 - Make sure you have dfx installed on your machine.
-- お使いのマシンにdfxがインストールされていることを確認してください。
+- お使いのマシンに dfx がインストールされていることを確認してください。
 
   ```
   dfx --version
@@ -37,20 +37,20 @@ You can access the official documentation for each topic.
 
 The notion of **Principal** is specific to the Internet Computer. <br/> A principal is a unique identifier fo all entities on the IC
 
-**Principal** という概念は、Internet Computer に特有のものである。<br/>
-Principal とは、IC 上のすべてのエンティティを一意に識別するものである。
+**Principal** という概念は、Internet Computer に特有のものです。<br/>
+Principal とは、IC 上のすべてのエンティティを一意に識別するものです。
 
 
 - A canister has it's own principal (which corresponds to the canister id)
+- キャニスターは独自の Principal を持ちます (これはキャニスターID に対応します)。
 - Each user has it's own principal.
+- 各ユーザには自身の Principal があります。
 - Your wallet has it's own principal.
-- キャニスタは独自のプリンシパルを持ちます (これはキャニスタ ID に対応します)。
-- 各ユーザは独自のプリンシパルを持ちます。
-- あなたの財布は独自のプリンシパルを持っています。
+- ウォレットには自身のPrincipal があります。
 
 You can access the principal of your dfx identity running the following command.
 
-以下のコマンドを実行することで、dfx IDのプリンシパルにアクセスすることができます。
+以下のコマンドを実行することで、dfx ID の Principal にアクセスできます。
 
 ```
 dfx identity get-principal
@@ -60,13 +60,16 @@ ubetf-42t5l-l64h6-ljrqr-6ztbu-tanvs-jrwiv-a45x4-ucoxp-cqr4i-mqe //My dfx princip
 <p align="center"> <img src="img/plug.png" width="400"/> </p>
 
 Here we also have a principal.
-ここでは、プリンシパルもあります。
+
+ここに Principal があります。
 
 Each message on the IC contains the information about the principal of the caller.
+
+IC上の各メッセージには、呼び出し元の Principal に関する情報が含まれています。
+
 You can access this information in Motoko with the following syntax.
 
-IC上の各メッセージには、発呼側のプリンシパルに関する情報が含まれています。
-Motokoでは、以下の構文でこの情報にアクセスすることができます。
+Motoko では、以下の構文でこの情報にアクセスできます。
 
 ```
 public shared(msg) func whoami() : async Principal {
@@ -78,7 +81,7 @@ public shared(msg) func whoami() : async Principal {
 The principal is accessible using msg.caller.
 You can also use this syntax.
 
-プリンシパルは msg.caller を使ってアクセスできます。
+Principal には msg.caller を使ってアクセスできます。
 また、この構文も使用できます。
 
 ```
@@ -90,12 +93,12 @@ public shared({caller}) func whoami() : async Principal {
 On the Internet Computer there is a special principal, it's called the **Anonymous** principal.
 The textual version of this principal is **2vxsx-fae**. It corresponds to any user that is not authenticated.
 
-Internet Computer には特別なプリンシパルがあり、それは **Anonymous** プリンシパルと呼ばれています。
-このプリンシパルのテキストバージョンは、**2vxsx-fae** です。これは、認証されていないすべてのユーザーに対応します。
+Internet Computer には特別な Principal があり、それは **Anonymous** Principal と呼ばれています。
+この Principal のテキストバージョンは、**2vxsx-fae** です。これは、認証されていないすべてのユーザーに対応しています。
 
 Finally, in Motoko there is a <a href="https://smartcontracts.org/docs/base-libraries/Principal.html" target="_blank"> **Principal** </a> module for basic operations on principals.
 
-最後に、Motoko には、プリンシパルに対する基本的な操作を行うための <a href="https://smartcontracts.org/docs/base-libraries/Principal.html" target="_blank"> **Principal** </a> モジュールが用意されています。
+最後に、Motoko には、Principal に対する基本的な操作を行うための <a href="https://smartcontracts.org/docs/base-libraries/Principal.html" target="_blank"> **Principal** </a> モジュールが用意されています。
 
 # Challenge 🎮
 
@@ -108,14 +111,14 @@ Take a break and try completing challenge 1.
 An HashMap is a **key** / **value** store that allow you to store elements of type **value** and later retrieve them using an element of type **key**.
 Usually, we note the type of the keys : **K** & the type of the values : **V**.
 
-HashMap は、**key** / **value** 型のストアで、**value** 型の要素を保存し、後で **key** 型の要素を使用してそれらを取得することができるものである。
-通常、キーの型は**K**と表記します。値の型は **V** と表記します。
+HashMap は、**key** / **value** 型のストアで、**value** の型の要素を保存し、後で **key** の型の要素を使ってそれらを取得できるものです。
+通常、キーの型は **K** と表記します。値の型は **V** と表記します。
 
 You can create an HashMap and use it by importing the **HashMap** module (don't forget the capital M). <br/>
 This is how you would instantiate your first HashMap, with **Keys** of type **Principal** and value of type **Name**.
 
 HashMap を作成し、それを使用するには、**HashMap** モジュールをインポートします（大文字のMを忘れないでください）。
-これは、最初のHashMapをインスタンス化する方法で、**Keys** は **Principal** 型で、valueは **Name** 型である。
+これは、最初の HashMap をインスタンス化する方法で、**Keys** は **Principal** 型で、valueは **Name** 型です。
 
 ```
 import HashMap "mo:base/HashMap";
@@ -136,38 +139,38 @@ actor {
 
 There is a lot going on. At this point you're probably not surprised by the Motoko syntax : HashMap.HashMap, it simply means that we import the HashMap object from the HashMap module. <br/>
 
-いろいろあるのです。この時点で、Motoko 構文 : HashMap.HashMap には驚かないでしょう。これは、単に HashMap モジュールから HashMap オブジェクトをインポートしていることを意味します。<br/>
+多くの事が起こっています。この時点で、Motoko の構文 : HashMap.HashMap には驚かないでしょう。これは、単に HashMap モジュールから HashMap オブジェクトをインポートしていることを意味します。<br/>
 
 Then we have three arguments to instantiate the HashMap.
 
-そして、HashMapをインスタンス化するための3つの引数を用意します。
+そして、HashMap をインスタンス化するための3つの引数があります。
 
 - 0 corresponds to the initial capacity of the HashMap. The capacity will automatically grow for you everytime you reach the maximum capacity of the HashMap, you don't need to worry about it 🥳.
 
-- 0は、HashMapの初期容量に相当します。HashMapの最大容量に達するたびに、自動的に容量が大きくなるので、心配する必要はありません 🥳。
+- 0 は HashMap の初期容量に相当します。HashMap の最大容量に達するたびに、自動的に容量が大きくなるので、心配する必要はありません 🥳
 
 - Principal.equal is needed to compare the Keys.
 
-- Keyの比較には、Principal.equalが必要です。
+- Key の比較には、Principal.equal が必要です。
 
 - Principal.hash is needed to hash the Keys.
 
-- Principal.hashはKeyをハッシュ化するために必要です。
+- Principal.hash はKey をハッシュ化するために必要です。
 
 If you are not familiar with the concept of **hash** and **hash table**, I recommend watching this <a href="https://www.youtube.com/watch?v=KyUTuwz_b7Q" target="_blank"> video </a>.
 
-もし、**ハッシュ**と**ハッシュテーブル**の概念に馴染みがなければ、この<a href="https://www.youtube.com/watch?v=KyUTuwz_b7Q" target="_blank"> ビデオ</a>を見ることをお勧めします。
+もし、**ハッシュ**と**ハッシュテーブル**の概念に馴染みがなければ、この <a href="https://www.youtube.com/watch?v=KyUTuwz_b7Q" target="_blank">ビデオ</a> を見ることをお勧めします。
 
 I really encourage you to understand the inner working of the HashMap, that way you'll get why we need to provide Principal.equal & Principal.hash.
 
-HashMapの内部構造を理解することで、なぜPrincipal.equalとPrincipal.hashを提供する必要があるのかを理解することができます。
+HashMap の内部構造を理解することで、なぜ Principal.equal と Principal.hash を提供する必要があるのかを理解できます。
 
 
 Let's move to the pratical application.
 You can add values inside the HashMap using the following syntax.
 
 では、実際に応用してみましょう。
-HashMapの内部に値を追加するには、以下の構文を使用します。
+HashMap の内部に値を追加するには、以下の構文を使用します。
 
 ```
 import HashMap "mo:base/HashMap";
@@ -186,7 +189,7 @@ actor {
 ```
 
 Here I have added the value **"This is the anonymous principal"** with the **Key** that corresponds to the anonymous principal.
-ここでは、値 **"This is the anonymous principal "** と匿名プリンシパルに対応する **Key** を追加しています。
+ここでは、匿名プリンシパルの **Key** と、その値 **"This is the anonymous principal "** を追加しています。
 
 Let's try to retrieve our value.
 
@@ -211,7 +214,7 @@ actor {
 
 Deploying this actor in the Motoko playground and running the test will return :
 
-このアクタを Motoko プレイグラウンドに配置してテストを実行すると、:
+このアクターを Motoko playground に配置してテストを実行すると
 
 ```
 (opt "This is the anonymous principal")
@@ -221,7 +224,7 @@ Deploying this actor in the Motoko playground and running the test will return :
 
 Take a break and try completing challenge 2 to 5.
 
-一息ついて、チャレンジ2～5をクリアしてみてください。
+一息ついて、チャレンジ 2～5 をクリアしてみてください。
 
 # Cycles 💰
 

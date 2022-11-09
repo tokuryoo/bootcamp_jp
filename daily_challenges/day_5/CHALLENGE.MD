@@ -49,7 +49,7 @@
   Note : You need two canisters. <br/>
   Note 2 : Don't do that in production without admin protection or your might be the target of a **cycle draining** attack.
 
-- 課題7（難しい⚠️）: キャニスターから引き出したいサイクルの数に対応する **Nat** 型のパラメータ n を受け取り、呼び出し元が deposit_cycles() というコールバックを持っているとして呼び出し元に送信する関数 <strong><i>withdraw_cycles</i></strong> を書く。<br/>
+- 課題7（難しい⚠️）: キャニスターから引き出したいサイクルの数に対応する **Nat** 型のパラメータ n を受け取り、呼び出し元が deposit_cycles() というコールバックを持っているとして呼び出し元に送信する関数 <strong><i>withdraw_cycles</i></strong> を書きなさい。<br/>
   注意：キャニスターは2つ必要です。<br/>
   注2：管理者の保護がない本番環境では行わないでください。さもないと、**サイクルの枯渇**攻撃の標的になる可能性があります。
 

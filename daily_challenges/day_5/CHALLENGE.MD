@@ -60,7 +60,8 @@
 
 - Challenge 9 : In a new file, copy and paste the functionnalities you've created in challenges 2 to 5. This time the hashmap and all records should be preserved accross upgrades.
 
-- 課題9：新しいファイルに、課題2〜5で作成した機能をコピー＆ペーストしてください。このとき、ハッシュマップとすべてのレコードは、アップグレード先へ、保存する必要があります。
+- 課題9：新しいファイルに、課題2〜5で作成した機能をコピー＆ペーストしてください。今回は、ハッシュマップとすべての記録は、アップグレードしても保持されるべきです。
+  - 訳注：新しいファイルを繰り返し deploy しても、ハッシュマップで保持している値がクリアされることなく保持されるように実装しましょう。
 
 - Challenge 10 (optional) : In autonomy, write a CRUD canister, you can add as much functionnalities as you want, a few examples :
 
